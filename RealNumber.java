@@ -29,7 +29,7 @@ public class RealNumber{
     return ""+value;
   }
 
-  public boolean equals(){
-    return (value - other.value) / value < .00001;
+  public boolean equals(RealNumber other){
+    return Math.abs((value - other.getValue()) / value) < Math.pow(10,-15);
   }
 }
