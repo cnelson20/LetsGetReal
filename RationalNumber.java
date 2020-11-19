@@ -16,6 +16,7 @@ public class RationalNumber extends RealNumber
       numerator = nume;
       denominator = deno;
     }
+    reduce();
   }
 
   public double getValue(){
@@ -62,6 +63,9 @@ public class RationalNumber extends RealNumber
     }
     return b;
   }
+  private int lcm(int a, int b) {
+    return a * b / gcd(a,b);
+  }
 
   /**
   *Divide the numerator and denominator by the GCD
@@ -69,33 +73,42 @@ public class RationalNumber extends RealNumber
   *reduced after construction.
   */
   private void reduce(){
-
+      int t1 = numerator;
+      int t2 = denominator;
+      numerator = numerator/gcd(t1,t2);
+      denominator = denominator/gcd(t1,t2);
   }
-  /******************Operations Return a new RationalNumber!!!!****************/
-  /**
-  *Return a new RationalNumber that is the product of this and the other
-  */
   public RationalNumber multiply(RationalNumber other){
-    return null;
+    RationalNumber a = new RationalNumber(this.numerator * other.numerator,this.denominator * other.denominator);
+    a.reduce();
+    return a;
   }
 
   /**
   *Return a new RationalNumber that is the this divided by the other
   */
   public RationalNumber divide(RationalNumber other){
-    return null;
+    RationalNumber a = new RationalNumber(this.numerator * other.denominator,this.denominator * other.numerator);
+    a.reduce();
+    return a;
   }
 
   /**
   *Return a new RationalNumber that is the sum of this and the other
   */
   public RationalNumber add(RationalNumber other){
-    return null;
+    int b = lcm(this.denominator,other.denominator);
+    int a = b / this.denominator * this.numerator;
+    int c = b / other.denominator * other.numerator;
+    return new RationalNumber(a+c,b);
   }
   /**
   *Return a new RationalNumber that this minus the other
   */
   public RationalNumber subtract(RationalNumber other){
-    return null;
+    int b = lcm(this.denominator,other.denominator);
+    int a = b / this.denominator * this.numerator;
+    int c = b / other.denominator * other.numerator;
+    return new RationalNumber(a-c,b);
   }
 }
