@@ -30,6 +30,9 @@ public class RealNumber{
   }
 
   public boolean equals(RealNumber other){
-    return Math.abs((value - other.getValue()) / value) < Math.pow(10,-15);
+    if (this.getValue() == 0 || other.getValue() == 0) {
+      return this.getValue() == 0 && other.getValue() == 0;
+    }
+    return Math.abs((value - other.getValue()) / value) < .00001;
   }
 }
