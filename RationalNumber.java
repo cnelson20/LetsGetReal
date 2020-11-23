@@ -38,9 +38,9 @@ public class RationalNumber extends RealNumber
   public boolean equals(RationalNumber other){
     return getNumerator() * other.getDenominator() == getDenominator() * other.getNumerator();
   }
-  public boolean equals(Number other){
-    return other.equals(this);
-  }
+  //public boolean equals(RealNumber other){
+  //  return other.equals(this);
+  //}
 
 
   public String toString(){

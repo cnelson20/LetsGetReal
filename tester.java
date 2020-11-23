@@ -32,6 +32,12 @@ public class tester {
     System.out.println(b1.add(b2));
     System.out.println("\n10. Expects 2/27");
     System.out.println(b1.subtract(b2));
+    System.out.println("\n10. Expects 1");
+    System.out.println(a6.compareTo(a5));
+    System.out.println("\n10. Expects 0");
+    System.out.println(a4.compareTo(a1));
+    System.out.println("\n10. Expects -1");
+    System.out.println(a4.compareTo(a2));
 
   }
 }
