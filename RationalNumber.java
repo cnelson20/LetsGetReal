@@ -1,42 +1,42 @@
 public class RationalNumber extends RealNumber
 {
-  private int numerator, denominator;
+  private int getNumerator(), getDenominator();
 
   /**Initialize the RationalNumber with the provided values
-  *  if the denominator is 0, make the fraction 0/1 instead
-  *@param nume the numerator
-  *@param deno the denominator
+  *  if the getDenominator() is 0, make the fraction 0/1 instead
+  *@param nume the getNumerator()
+  *@param deno the getDenominator()
   */
   public RationalNumber(int nume, int deno){
     super(nume * 1.0 / deno);
     if (deno == 0) {
-      numerator = 0;
-      denominator = 1;
+      getNumerator() = 0;
+      getDenominator() = 1;
     } else {
-      numerator = nume;
-      denominator = deno;
+      getNumerator() = nume;
+      getDenominator() = deno;
     }
     reduce();
   }
 
   public double getValue(){
-    return numerator / denominator;
+    return getNumerator() / getDenominator();
   }
 
   public int getNumerator(){
-    return numerator;
+    return getNumerator();
   }
 
   public int getDenominator(){
-    return denominator;
+    return getDenominator();
   }
 
   public RationalNumber reciprocal(){
-    return new RationalNumber(denominator,numerator);
+    return new RationalNumber(getDenominator(),getNumerator());
   }
 
   public boolean equals(RationalNumber other){
-    return numerator * other.denominator == denominator * other.numerator;
+    return getNumerator() * other.getDenominator() == getDenominator() * other.getNumerator();
   }
   public boolean equals(RealNumber other){
     return other.equals(this);
@@ -44,7 +44,10 @@ public class RationalNumber extends RealNumber
 
 
   public String toString(){
-    return numerator + "/" + denominator;
+    if (getDenominator() == 1) {
+      return getNumerator();
+    }
+    return getNumerator() + "/" + getDenominator();
   }
 
   private static int gcd(int a, int b){
@@ -63,23 +66,23 @@ public class RationalNumber extends RealNumber
     }
     return b;
   }
-  private int lcm(int a, int b) {
+  private static int lcm(int a, int b) {
     return a * b / gcd(a,b);
   }
 
   /**
-  *Divide the numerator and denominator by the GCD
+  *Divide the getNumerator() and getDenominator() by the GCD
   *This must be used to maintain that all RationalNumbers are
   *reduced after construction.
   */
   private void reduce(){
-      int t1 = numerator;
-      int t2 = denominator;
-      numerator = numerator/gcd(t1,t2);
-      denominator = denominator/gcd(t1,t2);
+      int t1 = getNumerator();
+      int t2 = getDenominator();
+      getNumerator() = getNumerator()/gcd(t1,t2);
+      getDenominator() = getDenominator()/gcd(t1,t2);
   }
   public RationalNumber multiply(RationalNumber other){
-    RationalNumber a = new RationalNumber(this.numerator * other.numerator,this.denominator * other.denominator);
+    RationalNumber a = new RationalNumber(this.getNumerator() * other.getNumerator(),this.getDenominator() * other.getDenominator());
     a.reduce();
     return a;
   }
@@ -88,7 +91,7 @@ public class RationalNumber extends RealNumber
   *Return a new RationalNumber that is the this divided by the other
   */
   public RationalNumber divide(RationalNumber other){
-    RationalNumber a = new RationalNumber(this.numerator * other.denominator,this.denominator * other.numerator);
+    RationalNumber a = new RationalNumber(this.getNumerator() * other.getDenominator(),this.getDenominator() * other.getNumerator());
     a.reduce();
     return a;
   }
@@ -97,18 +100,18 @@ public class RationalNumber extends RealNumber
   *Return a new RationalNumber that is the sum of this and the other
   */
   public RationalNumber add(RationalNumber other){
-    int b = lcm(this.denominator,other.denominator);
-    int a = b / this.denominator * this.numerator;
-    int c = b / other.denominator * other.numerator;
+    int b = lcm(this.getDenominator(),other.getDenominator());
+    int a = b / this.getDenominator() * this.getNumerator();
+    int c = b / other.getDenominator() * other.getNumerator();
     return new RationalNumber(a+c,b);
   }
   /**
   *Return a new RationalNumber that this minus the other
   */
   public RationalNumber subtract(RationalNumber other){
-    int b = lcm(this.denominator,other.denominator);
-    int a = b / this.denominator * this.numerator;
-    int c = b / other.denominator * other.numerator;
+    int b = lcm(this.getDenominator(),other.getDenominator());
+    int a = b / this.getDenominator() * this.getNumerator();
+    int c = b / other.getDenominator() * other.getNumerator();
     return new RationalNumber(a-c,b);
   }
 }
