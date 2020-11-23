@@ -1,6 +1,6 @@
 public class RationalNumber extends RealNumber
 {
-  private int getNumerator(), getDenominator();
+  private int numerator,denominator;
 
   /**Initialize the RationalNumber with the provided values
   *  if the getDenominator() is 0, make the fraction 0/1 instead
@@ -8,27 +8,27 @@ public class RationalNumber extends RealNumber
   *@param deno the getDenominator()
   */
   public RationalNumber(int nume, int deno){
-    super(nume * 1.0 / deno);
+    super(((double)nume) / deno);
     if (deno == 0) {
-      getNumerator() = 0;
-      getDenominator() = 1;
+      numerator = 0;
+      denominator = 1;
     } else {
-      getNumerator() = nume;
-      getDenominator() = deno;
+      numerator = nume;
+      denominator = deno;
     }
     reduce();
   }
 
   public double getValue(){
-    return getNumerator() / getDenominator();
+    return (double)numerator / denominator;
   }
 
   public int getNumerator(){
-    return getNumerator();
+    return numerator;
   }
 
   public int getDenominator(){
-    return getDenominator();
+    return denominator;
   }
 
   public RationalNumber reciprocal(){
@@ -45,7 +45,7 @@ public class RationalNumber extends RealNumber
 
   public String toString(){
     if (getDenominator() == 1) {
-      return getNumerator();
+      return getNumerator() + "";
     }
     return getNumerator() + "/" + getDenominator();
   }
@@ -78,8 +78,8 @@ public class RationalNumber extends RealNumber
   private void reduce(){
       int t1 = getNumerator();
       int t2 = getDenominator();
-      getNumerator() = getNumerator()/gcd(t1,t2);
-      getDenominator() = getDenominator()/gcd(t1,t2);
+      numerator = getNumerator()/gcd(t1,t2);
+      denominator = getDenominator()/gcd(t1,t2);
   }
   public RationalNumber multiply(RationalNumber other){
     RationalNumber a = new RationalNumber(this.getNumerator() * other.getNumerator(),this.getDenominator() * other.getDenominator());
