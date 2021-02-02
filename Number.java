@@ -1,4 +1,4 @@
-abstract class Number {
+abstract class Number implements Comparable<Number>{
   public abstract double getValue();
 
   public boolean equals(Number other) {
